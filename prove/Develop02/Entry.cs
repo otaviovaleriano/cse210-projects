@@ -29,17 +29,17 @@ public class Entry
         string entryDate = _date.ToString("MM/dd/yyyy");
         string wholeEntry = ($"{entryDate} - {randomQuestion} - {answer}");
         _entries.Add(wholeEntry);
-        // the list is saving here, but replacing the last adition.
-        // for (int i = 0; i < _entries.Count; i++)
-        // {
-        //     Console.WriteLine(_entries[i]);
-        // } 
+        //the list is saving here, but replacing the last adition.
+        for (int i = 0; i < _entries.Count(); i++)
+        {
+            Console.WriteLine(_entries[i]);
+        } 
     }
 
     public void displayPrompt()
     {
         //solve the fact that the list _entries is not saving globally.
-        for (int i = 0; i < _entries.Count; i++)
+        for (int i = 0; i < _entries.Count(); i++)
         {
             Console.WriteLine(_entries[i]);
         }
