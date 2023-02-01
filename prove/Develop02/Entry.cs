@@ -1,48 +1,53 @@
 public class Entry
 {
 
-    public List<string> _entries = new List<string>();
-    public List<string> _prompts = new List<string>();
-    DateTime _date = DateTime.Today;
+    // public List<string> _entries = new List<string>();
+    public string _entry = "";
+    public string _prompt = "";
+    public string _date = "";
+
 
     public Entry()
     {
-
+        _date = DateTime.Now.ToString("MM/dd/yyyy");
     }
 
-    public void GeneratePrompts()
-    {
-        _prompts.Add("What happened to you today?: ");
-        _prompts.Add("Write a fun thing you did today: ");
-        _prompts.Add("Write a sad that happened to you this week: ");
-        _prompts.Add("Tell me a fun fact about you: ");
-        _prompts.Add("What are you grateful for today?: ");
-    }
     public void InsertEntry()
     {
         //  random for the option of prompts.
-        Random numGenerator = new Random();
-        int index = numGenerator.Next(4);
-        string randomQuestion = (_prompts[index]);
-        Console.Write(randomQuestion);
-        string answer = Console.ReadLine();
-        string entryDate = _date.ToString("MM/dd/yyyy");
-        string wholeEntry = ($"{entryDate} - {randomQuestion} - {answer}");
-        _entries.Add(wholeEntry);
+        // Random numGenerator = new Random();
+        // int index = numGenerator.Next(4);
+        // string randomQuestion = (_prompts[index]);
+        // Console.Write(randomQuestion);
+        _prompt = new Prompt().GeneratePrompts();
+        Console.WriteLine(_prompt);
+        // string answer = Console.ReadLine();
+        _entry = Console.ReadLine();
+        Console.Write("Saved!");
+        // string wholeEntry = ($"{entryDate} - {_prompt} - {answer}");
+        // _entries.Add(wholeEntry);
+        // Console.WriteLine(_entries.Count());
         //the list is saving here, but replacing the last adition.
-        for (int i = 0; i < _entries.Count(); i++)
-        {
-            Console.WriteLine(_entries[i]);
-        } 
     }
-
     public void displayPrompt()
     {
         //solve the fact that the list _entries is not saving globally.
-        for (int i = 0; i < _entries.Count(); i++)
-        {
-            Console.WriteLine(_entries[i]);
-        }
-        Console.WriteLine("its working");
+        // for (int i = 0; i < _entries.Count(); i++)
+        // {
+        //     Console.WriteLine(_entries[i]);
+        // }
+        Console.WriteLine($"{_date}: {_prompt}\n\t{_entry}");
     }
+
+    public string stringfy()
+    {
+        return $"{_date} ||| {_prompt} ||| {_entry}";
+    }
+
+    public void createFromList(string[] entryDetails){
+        _date=entryDetails[0];
+        _prompt=entryDetails[1];
+        _entry=entryDetails[2];
+    }
+
 }

@@ -5,11 +5,14 @@ class Program
 {
     static void Main(string[] args)
     {
-        Menu();
+        Entry p = new Entry();
+        Journal j = new Journal();
+        FileHandler file = new FileHandler();
+        string message = string.Empty;
+        Menu(p, j, file);
 
-        static void Menu()
+        void Menu(Entry p, Journal j, FileHandler file)
         {
-            Entry p = new Entry();
             int choice = 0;
             // Console.Clear();
             Console.WriteLine("Please select one of the following choices: ");
@@ -24,35 +27,39 @@ class Program
                 switch (choice)
                 {
                     case 1:
-                        Console.WriteLine("option 1");
+                        // Console.WriteLine("option 1");
                         //new object with the class Entry - to call methods.
                         // generates one of the prompts.
-                        p.GeneratePrompts();
-                        p.InsertEntry();
+                        message = j.addEntry();
 
                         // returns to menu after adding the entry.
-                        Menu();
+                        Menu(p, j, file);
 
                         break;
 
                     case 2:
-                        Console.WriteLine("option 2");
-                        p.displayPrompt();
-                        // Menu();
+                        // Console.WriteLine("option 2");
+                        j.displayEntry();
+                        Menu(p, j, file);
 
                         break;
 
                     case 3:
-                        Console.WriteLine("option 3");
-                        Menu();
+                        // Console.WriteLine("option 3");
+                        List<Entry> entries = file.readFile();
+                        j.LoadEntries(entries);
+                        message = "Loaded Entries Successfully";
+                        Menu(p, j, file);
 
                         break;
 
                     case 4:
-                        Console.WriteLine("option 4");
-                        Menu();
-
+                        // Console.WriteLine("option 4");
+                        file.writeFile(j.getEntries());
+                        message = "Saved File Successfully";
+                        Menu(p, j, file);
                         break;
+                        
                     default:
                         //if a number other than 1-5 is entered, request
                         //player enter a number in that range
@@ -61,7 +68,7 @@ class Program
                         Console.WriteLine("Please enter a number 1-5.");
                         Console.WriteLine("Press enter to continue...");
                         Console.ReadLine();
-                        Menu();
+                        Menu(p, j, file);
                         break;
                 }
 
