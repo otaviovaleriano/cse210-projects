@@ -25,6 +25,8 @@ class Memorize
             if (scripture.HiddenWords.All(x => x))
             {
                 Console.Clear();
+                Console.WriteLine(scripture.Reference);      
+                Console.WriteLine(scripture.GetDisplayText());
                 Console.WriteLine("All words have been hidden!");
                 break;
             }
