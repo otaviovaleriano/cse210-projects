@@ -1,0 +1,4 @@
+00|Otavio|250
+1|go to bed|go to bed before 2am|10|True
+2|read the BOM|read bom|2|100
+3|go to the gym|go to the gym|20|1000|100|2|False
